@@ -1,0 +1,80 @@
+group 'com.incarcloud'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "${mavenRepoUrl}" }
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/io.grpc/grpc-all
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.26.0'
+}
+
+sourceSets {
+    main {
+        proto {
+            // In addition to the default 'src/main/proto'
+            srcDir '/Users/baichangda/bcd/workspace/methane-std/helloV1'
+            // In addition to the default '**/*.proto' (use with caution).
+            // Using an extension other than 'proto' is NOT recommended,
+            // because when proto files are published along with class files, we can
+            // only tell the type of a file from its extension.
+            include '**/*.protodevel'
+        }
+    }
+    test {
+        proto {
+            // In addition to the default 'src/test/proto'
+            srcDir 'src/test/protocolbuffers'
+        }
+    }
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+
+    plugins {
+        // Locate a plugin with name 'grpc'. This step is optional.
+        // If you don't locate it, protoc will try to use "protoc-gen-grpc" from
+        // system search path.
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+            // or
+            // path = 'tools/protoc-gen-grpc-java'
+        }
+        // Any other plugins
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc { }
+        }
+    }
+
+    generatedFilesBaseDir="$projectDir/src/"
+}
+
+buildscript {
+    ext {
+        mavenRepoUrl='https://maven.aliyun.com/repository/central'
+    }
+    repositories {
+        mavenLocal()
+        maven { url "${mavenRepoUrl}" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2'
+    }
+}
