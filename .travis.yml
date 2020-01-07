@@ -4,12 +4,3 @@ jdk:
    - oraclejdk8
 
 script: gradle check
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: 8459f4e6c2ed1d8d3493e433dbf59f1879fba44d  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  on:
-    branch: master
-
