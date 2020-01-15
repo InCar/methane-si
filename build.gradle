@@ -4,6 +4,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'com.google.protobuf'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 
@@ -14,6 +15,8 @@ repositories {
 }
 
 dependencies {
+    //springboot支持
+    compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     // https://mvnrepository.com/artifact/io.grpc/grpc-all
     compile group: 'io.grpc', name: 'grpc-all', version: '1.26.0'
 }
@@ -68,6 +71,7 @@ protobuf {
 buildscript {
     ext {
         mavenRepoUrl='https://maven.aliyun.com/repository/central'
+        springBootVersion='+'
     }
     repositories {
         mavenLocal()
@@ -76,5 +80,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2'
+        //使用springboot框架
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }

@@ -22,7 +22,7 @@ public interface Sender {
      * @param data
      * @param callback
      */
-    void sendAsync(HelloV data, BiConsumer<HelloV.HelloRequestV1,Exception> callback);
+    void sendAsync(HelloV data, BiConsumer<HelloV.HelloRequestV1, Exception> callback);
 
     /**
      * 同步发送(批量)
@@ -36,5 +36,5 @@ public interface Sender {
      * @param dataList
      * @param callback
      */
-    void sendAsyncBatch(List<HelloV> dataList, BiConsumer<List<HelloV.HelloRequestV1>,Exception> callback);
+    void sendAsyncBatch(List<HelloV> dataList, BiConsumer<List<HelloV.HelloResponseV1>, Exception> callback);
 }

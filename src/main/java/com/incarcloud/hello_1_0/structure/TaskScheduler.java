@@ -4,17 +4,17 @@ import java.util.concurrent.ScheduledFuture;
 
 public interface TaskScheduler {
     /**
-     * 生成下一次的数据生成任务(存入缓存)
+     * 执行任务并生成下一次的数据生成任务(存入缓存)
      */
-    ScheduledFuture scheduleNextBuildData(Runnable task);
+    ScheduledFuture scheduleNextBuildData(BuildDataTask task);
 
     /**
-     * 生成下一次的数据发送任务(从缓存中取出数据发送)
+     * 执行任务并生成下一次的数据发送任务(从缓存中取出数据发送)
      */
-    ScheduledFuture scheduleNextSendData(Runnable task);
+    ScheduledFuture scheduleNextSendData(SendDataTask task);
 
     /**
-     * 生成下一次的数据重发任务(从缓存中取出数据发送)
+     * 执行任务并生成下一次的数据重发任务(从缓存中取出数据发送)
      */
-    ScheduledFuture scheduleNextRetrySendData(Runnable task);
+    ScheduledFuture scheduleNextRetrySendData(RetrySendDataTask task);
 }

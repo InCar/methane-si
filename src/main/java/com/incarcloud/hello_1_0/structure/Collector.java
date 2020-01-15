@@ -5,27 +5,27 @@ package com.incarcloud.hello_1_0.structure;
  */
 public interface Collector {
     /**
-     * 采集模拟的数据数量
+     * 采集构造的数据
      * @param num
      */
     void collectBuildData(int num);
 
     /**
-     * 采集发送成功的数据数量
+     * 采集发送成功的数据
      * @param num
      */
     void collectSendDataSucceed(int num);
 
     /**
-     * 采集发送失败的数据数量
+     * 采集发送失败的数据
      * @param num
      */
     void collectSendDataFailed(int num);
 
     /**
-     * 采集 单位数量的 平均延时
+     * 采集响应延时
      * @param num
      * @param delay
      */
-    void collectResponseDelay(int num,long delay);
+    void collectResponseDelay(int num, long delay);
 }

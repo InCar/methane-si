@@ -13,5 +13,5 @@ public interface DataBuilder {
      * @param exts
      * @return
      */
-    List<HelloV> build(Object ... exts);
+    List<HelloV> build(Object... exts);
 }
