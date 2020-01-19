@@ -29,12 +29,12 @@ public interface Sender {
      * @param dataList
      * @return
      */
-    HelloV.HelloResponseV1 sendSyncBatch(List<HelloV> dataList);
+    HelloV.HelloResponseV1 sendSyncBatch(List<HelloV.HelloRequestV1> dataList);
 
     /**
      * 异步发送(批量)
      * @param dataList
      * @param callback
      */
-    void sendAsyncBatch(List<HelloV> dataList, BiConsumer<List<HelloV.HelloResponseV1>, Exception> callback);
+    void sendAsyncBatch(List<HelloV.HelloRequestV1> dataList, BiConsumer<List<HelloV.HelloResponseV1>, Exception> callback);
 }

@@ -12,11 +12,11 @@ public interface BuildDataCache {
      * 存入模拟数据
      * @param dataList
      */
-    void put(List<HelloV> dataList);
+    void put(List<HelloV.HelloRequestV1> dataList);
 
     /**
      * 拿走模拟数据
      * @return
      */
-    List<HelloV> take();
+    List<HelloV.HelloRequestV1> take();
 }

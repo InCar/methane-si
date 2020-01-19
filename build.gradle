@@ -19,6 +19,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     // https://mvnrepository.com/artifact/io.grpc/grpc-all
     compile group: 'io.grpc', name: 'grpc-all', version: '1.26.0'
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.9.0.1'
+    compile ("com.alibaba:fastjson:1.2.56")
 }
 
 sourceSets {

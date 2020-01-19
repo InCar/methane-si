@@ -6,11 +6,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RetryData {
     //数据
-    HelloV data;
+    HelloV.HelloRequestV1 data;
     //重发次数
     AtomicInteger time=new AtomicInteger();
 
-    public HelloV getData() {
+    public HelloV.HelloRequestV1 getData() {
         return data;
     }
 
@@ -18,7 +18,7 @@ public class RetryData {
         return time;
     }
 
-    public RetryData(HelloV data) {
+    public RetryData(HelloV.HelloRequestV1 data) {
         this.data = data;
     }
 }

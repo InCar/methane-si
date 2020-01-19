@@ -26,7 +26,7 @@ public class RetrySendDataTask implements Runnable{
         //获取重发缓存数据
         List<RetryData> retryList= retrySendDataCache.take();
         //转换为发送数据,并在重发次数上+1
-        List<HelloV> dataList= retryList.stream().map(e->{
+        List<HelloV.HelloRequestV1> dataList= retryList.stream().map(e->{
             e.getTime().incrementAndGet();
             return e.getData();
         }).collect(Collectors.toList());

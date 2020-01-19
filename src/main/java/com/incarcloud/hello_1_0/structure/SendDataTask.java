@@ -24,7 +24,7 @@ public class SendDataTask implements Runnable{
 
     @Override
     public void run() {
-        List<HelloV> dataList= buildDataCache.take();
+        List<HelloV.HelloRequestV1> dataList = buildDataCache.take();
         long t1=System.currentTimeMillis();
         sender.sendAsyncBatch(dataList,(e1,e2)->{
             //收集发送延时
