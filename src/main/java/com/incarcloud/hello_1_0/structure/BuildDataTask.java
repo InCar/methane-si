@@ -22,7 +22,7 @@ public class BuildDataTask implements Runnable{
 
     @Override
     public void run() {
-        List<HelloV> dataList= dataBuilder.build(exts);
+        List<HelloV.HelloRequestV1> dataList= dataBuilder.build(exts);
         buildDataCache.put(dataList);
         collector.collectBuildData(dataList.size());
     }
