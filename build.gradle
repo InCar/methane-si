@@ -1,10 +1,27 @@
 group 'com.incarcloud'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'idea'
-apply plugin: 'java'
-apply plugin: 'com.google.protobuf'
-apply plugin: 'org.springframework.boot'
+buildscript {
+    ext {
+        mavenRepoUrl='https://maven.aliyun.com/repository/central'
+        springBootVersion='+'
+    }
+    repositories {
+        mavenLocal()
+        maven { url "${mavenRepoUrl}" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
+        //使用springboot框架
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
+apply plugin: "com.google.protobuf"
 
 sourceCompatibility = 1.8
 
@@ -18,7 +35,7 @@ dependencies {
     //springboot支持
     compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
     // https://mvnrepository.com/artifact/io.grpc/grpc-all
-    compile group: 'io.grpc', name: 'grpc-all', version: '1.26.0'
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.28.1'
     compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.9.0.1'
     compile ("com.alibaba:fastjson:1.2.56")
 }
@@ -27,7 +44,8 @@ sourceSets {
     main {
         proto {
             // In addition to the default 'src/main/proto'
-            srcDir '/Users/baichangda/bcd/workspace/methane-std/helloV1'
+//            srcDir '/Users/baichangda/bcd/workspace/methane-std/helloV1'
+            srcDir '/Users/baichangda/bcd/workspace/methane-std/ResourceV1'
             // In addition to the default '**/*.proto' (use with caution).
             // Using an extension other than 'proto' is NOT recommended,
             // because when proto files are published along with class files, we can
@@ -47,7 +65,7 @@ protobuf {
     // Configure the protoc executable
     protoc {
         // Download from repositories
-        artifact = 'com.google.protobuf:protoc:3.0.0'
+        artifact = 'com.google.protobuf:protoc:3.11.4'
     }
 
     plugins {
@@ -55,7 +73,7 @@ protobuf {
         // If you don't locate it, protoc will try to use "protoc-gen-grpc" from
         // system search path.
         grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.28.1'
             // or
             // path = 'tools/protoc-gen-grpc-java'
         }
@@ -70,19 +88,3 @@ protobuf {
     generatedFilesBaseDir="$projectDir/src/"
 }
 
-buildscript {
-    ext {
-        mavenRepoUrl='https://maven.aliyun.com/repository/central'
-        springBootVersion='+'
-    }
-    repositories {
-        mavenLocal()
-        maven { url "${mavenRepoUrl}" }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2'
-        //使用springboot框架
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
